@@ -25,15 +25,18 @@ public class userServiceImpl implements userService {
 		user u2=valueMapper.convertoUser(u1);
 		return userrepo.save(u2);
 	}
+	
 	//retriving users from db
 	public List<user> getUser(){
 		return userrepo.findAll();
 	}
+	
 	//update user
 	public user updateUser(userDTO u1) {
 		user u2=valueMapper.convertoUser(u1);
 		return userrepo.save(u2);
 	}
+	
 	//delete the user
 	public String deleteUser(int userid) throws globalException
 	{
@@ -44,6 +47,31 @@ public class userServiceImpl implements userService {
 		}
 		else {
 			throw new globalException("user not found");
+		}
+	}
+	
+	//updating user phone
+	@Override
+	public String updatePhone(int userid, String phone) throws globalException {
+		
+		int st=userrepo.updatePhone(userid, phone);
+		if(st==1) {
+			return "updated!...";
+		}
+		else {
+			throw new globalException("something went wrong");
+		}
+	}
+	
+	//alloting roomid to user
+	@Override
+	public String allotRoom(int userid, int roomid) throws globalException {
+		int st=userrepo.allotRoom(userid, roomid);
+		if(st==1) {
+			return "Room Alloted to "+userid;
+		}
+		else {
+			throw new globalException("something went wrong");
 		}
 	}
 }

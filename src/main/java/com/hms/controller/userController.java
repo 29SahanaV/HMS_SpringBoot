@@ -46,7 +46,7 @@ public class userController {
 		return new ResponseEntity<>(service.updateUser(u1),HttpStatus.ACCEPTED);
 	}
 
-	@DeleteMapping("/delete")
+	@DeleteMapping("/delete/{userid}")
 	public ResponseEntity<String> deleteUser(@PathVariable int userid) throws globalException{
 
 		String status=service.deleteUser(userid);
@@ -56,8 +56,19 @@ public class userController {
 		else {
 			return new ResponseEntity<>(status,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-
 	}
 
+	//update user phone
+@PutMapping("/phone/{id}/{phone}")
+	public ResponseEntity<String> updatePhone(@PathVariable int id,@PathVariable String phone) throws globalException{
+		return new ResponseEntity<>(service.updatePhone(id, phone),HttpStatus.OK);
+
+	}
+	//alloting room for user
+	@PutMapping("/allotroom/{userid}/{roomid}")
+	public ResponseEntity<String> allotRoom(@PathVariable int userid,@PathVariable int roomid) throws globalException{
+
+		return new ResponseEntity<>(service.allotRoom(userid, roomid),HttpStatus.OK);
+
+	}
 }
