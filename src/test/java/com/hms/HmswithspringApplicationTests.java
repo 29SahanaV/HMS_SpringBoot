@@ -18,7 +18,7 @@ class HmswithspringApplicationTests {
 	void testDelete()throws globalException {
 
 		var expected="deleted";
-			var actual=service.deleteUser(4);
+			var actual=service.deleteUser(2);
 			assertSame(expected,actual);
 
 	}

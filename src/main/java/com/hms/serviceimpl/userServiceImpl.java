@@ -74,4 +74,17 @@ public class userServiceImpl implements userService {
 			throw new globalException("something went wrong");
 		}
 	}
+	
+	//updating user fee
+	@Override
+	public String updateFee(int userid, int userfee) throws globalException {
+		int st=userrepo.updateFee(userid, userfee);
+		if(st==1) {
+			return "Fee Updated to "+userid;
+		}
+		else {
+			throw new globalException("something went wrong");
+		}
+
+	}
 }
